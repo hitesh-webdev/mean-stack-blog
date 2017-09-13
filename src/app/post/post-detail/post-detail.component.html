@@ -1,0 +1,84 @@
+<!-- Blog Post -->
+
+<!-- Title -->
+<h1>{{post.title}}</h1>
+
+<!-- Author -->
+<p>
+    by <b>{{post.author.email}}</b>
+</p>
+
+<hr>
+
+<!-- Date/Time -->
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp | date:'fullDate' }} at {{ post.timestamp | date:'shortTime' }}</p>
+
+<hr>
+
+<!-- Tags -->
+<div *ngIf="post.tags.length > 0">
+<p>
+    <span class="glyphicon glyphicon-tags"></span> Tags: 
+    <a [routerLink]="['/posts/tags', tag]" *ngFor="let tag of post.tags">{{tag}}, </a>
+</p>
+
+<hr>
+</div>
+
+<!-- Preview Image -->
+<img class="img-responsive" [src]="post.imagePath" alt="">
+
+<hr>
+
+<!-- Post Content -->
+<p>{{post.content}}</p>
+
+<hr>
+
+<!-- Blog Comments -->
+<h3 *ngIf="post.comments.length > 0 || loggedIn"><span class="glyphicon glyphicon-comment"></span> Comments:</h3>
+
+<hr>
+
+<!-- Comments Form -->
+<div *ngIf="loggedIn" class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form" (ngSubmit)="onComment(f)" #f="ngForm">
+        <div class="form-group">
+            <textarea 
+                class="form-control" 
+                rows="3" 
+                required
+                name="comment"
+                ngModel 
+                #comment="ngModel"
+            >
+            </textarea>
+            <p 
+                class="help-block"
+                *ngIf="!comment.valid && comment.touched">
+                * Please enter a Comment
+            </p>
+        </div>
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+
+</div>
+
+<!-- Posted Comments -->
+
+<!-- Comment -->
+<div *ngFor="let comment of post.comments" class="media">
+    <a class="pull-left" href="#">
+        <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+        <h4 class="media-heading">{{comment.username}}
+            <small>{{ comment.timestamp | date:'fullDate' }} at {{ comment.timestamp | date:'shortTime' }}</small>
+        </h4>
+        {{comment.text}}
+    </div>
+</div>
+

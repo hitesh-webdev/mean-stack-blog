@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-xs-4 col-xs-offset-4 loginBox">
+  
+      <h2>REGISTER</h2>
+  
+      <form (ngSubmit)="onRegister(f)" #f="ngForm">
+  
+          <div class="row">
+            <label for="email">Email</label>
+            <input 
+              type="text" 
+              id="email"
+              name="email" 
+              ngModel
+              class="form-control" 
+              required
+              #email="ngModel">
+            <p 
+              *ngIf="!email.valid && email.touched"
+              class="help-block">
+              *Please enter a valid Email.
+            </p>
+          </div>
+  
+          <div class="row">
+            <label for="password">Password</label>
+            <input 
+              type="password" 
+              id="password" 
+              class="form-control" 
+              name="password"
+              ngModel
+              required
+              #password="ngModel">
+            <p 
+              *ngIf="!password.valid && password.touched"
+              class="help-block">
+              *Please enter a Password.
+            </p>
+          </div>
+
+          <div class="row">
+            <label for="password">Confirm Password</label>
+            <input 
+              type="password" 
+              id="cpassword" 
+              class="form-control" 
+              name="cpassword"
+              ngModel
+              required
+              #cpassword="ngModel">
+            <p 
+              *ngIf="!cpassword.valid && cpassword.touched"
+              class="help-block">
+              *Please confirm your Password.
+            </p>
+            <p 
+              *ngIf="password.value !== cpassword.value && cpassword.valid"
+              class="help-block">
+              *Password values do not match.
+            </p>
+          </div>
+  
+          <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+              <button type="submit" [disabled]="!f.valid || password.value !== cpassword.value" class="btn btn-success">Register</button>
+            </div>
+          </div>
+  
+      </form>
+  
+    </div>
+</div>
+  

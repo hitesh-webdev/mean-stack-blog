@@ -1,0 +1,29 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="/">Blog POC</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/posts">Home</a>
+            </li>
+            <li *ngIf="loggedIn" routerLinkActive="active">
+                <a routerLink="/add-post">Add Post</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <li *ngIf="!loggedIn" routerLinkActive="active">
+                <a routerLink="/login">Login</a>
+            </li>
+            <li>
+                <a *ngIf="loggedIn">Welcome! {{userEmail}}</a>
+            </li>
+            <li *ngIf="loggedIn">
+                <a [ngStyle]="{cursor: 'pointer'}" (click)="onLogout()">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.container -->
+</nav>

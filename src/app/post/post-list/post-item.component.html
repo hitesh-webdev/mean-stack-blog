@@ -1,0 +1,17 @@
+<!-- Post Item -->
+<h2>
+    <a [routerLink]="['/posts/post-detail', post.postId]">{{post.title}}</a>
+</h2>
+<p>
+    by <b>{{ post.author.email }}</b>
+</p>
+<p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.timestamp | date:'fullDate' }} at {{ post.timestamp | date:'shortTime' }}</p>
+<hr>
+<img class="img-responsive" [src]="post.imagePath" alt="">
+<hr>
+<p><span [textContent]="post.content.substring(0,200)"></span>...</p>
+<a class="btn btn-primary" [routerLink]="['/posts/post-detail', post.postId]">
+    Read More <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
+
+<hr>

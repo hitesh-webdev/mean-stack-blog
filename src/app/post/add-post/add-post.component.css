@@ -1,0 +1,33 @@
+.fullWidth{
+    width: 100%;
+}
+
+.submitBtns{
+    margin-top: 80px;
+}
+
+form{
+    border: 1px solid #ccc;
+    padding: 35px;
+}
+
+h3{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.tagMargin{
+    margin: 10px 0px 10px 0px;
+}
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.help-block{
+    color: red;
+}
